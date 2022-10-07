@@ -2,7 +2,6 @@
     "config": {
         "step": {
             "user": {
-                "title": "ExchangeRate.host",
                 "description": "Select the currency to convert from and to below.",
                 "data": {
                     "name": "Name",
@@ -19,7 +18,6 @@
     "options": {
         "step": {
             "user": {
-                "title": "ExchangeRate.host",
                 "description": "Select the currency to convert from and to below.",
                 "data": {
                     "name": "Name",
