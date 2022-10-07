@@ -39,6 +39,10 @@ Step 1: _Work in progress_
 
 If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md)
 
+## ToDo
+
+[ ] Tests
+
 ***
 
 [exchangerate_host]: https://exchangerate.host/
