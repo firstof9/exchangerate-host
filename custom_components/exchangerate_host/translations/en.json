@@ -1,0 +1,33 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "ExchangeRate.host",
+                "description": "Select the currency to convert from and to below.",
+                "data": {
+                    "name": "Name",
+                    "currency": "Convert from",
+                    "convert": "Convert to",
+                    "interval": "Update rate (in seconds)"
+                }
+            }
+        },
+        "error": {
+            "interval_too_low": "Interval too low, must be more than 30 seconds."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "ExchangeRate.host",
+                "description": "Select the currency to convert from and to below.",
+                "data": {
+                    "name": "Name",
+                    "currency": "Convert from",
+                    "convert": "Convert to",
+                    "interval": "Update rate (in seconds)"
+                }
+            }
+        }
+    }
+}

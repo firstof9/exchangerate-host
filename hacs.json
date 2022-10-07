@@ -1,10 +1,7 @@
 {
-    "name": "Integration blueprint",
-    "hacs": "1.6.0",
-    "domains": [
-        "binary_sensor",
-        "sensor",
-        "switch"
-    ],
-    "homeassistant": "0.118.0"
+    "name": "Exchangerate.host",
+    "domains": [ "sensor" ],
+    "zip_release": true,
+    "filename": "exchangerate_host.zip",
+    "homeassistant": "2022.8.0"
 }

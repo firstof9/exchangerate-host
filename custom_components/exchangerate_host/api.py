@@ -1,40 +1,49 @@
 """Sample API Client."""
-import logging
 import asyncio
+import logging
 import socket
 from typing import Optional
+
 import aiohttp
 import async_timeout
 
-TIMEOUT = 10
-
+from .const import BASE_URL, TIMEOUT
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 HEADERS = {"Content-type": "application/json; charset=UTF-8"}
 
 
-class IntegrationBlueprintApiClient:
+class ExchangeRateHostApiClient:
+    """Class for ExchangeRateHost API calls."""
+
     def __init__(
-        self, username: str, password: str, session: aiohttp.ClientSession
+        self,
+        username: str = None,
+        password: str = None,
+        session: aiohttp.ClientSession = None,
+        currency: str = None,
     ) -> None:
         """Sample API Client."""
         self._username = username
         self._password = password
         self._session = session
+        self._url = BASE_URL
+        self._currency = currency
+
+    async def async_get_symbols(self) -> dict:
+        """Get symbol date from the API."""
+        url = f"{self._url}symbols"
+        data = await self.api_wrapper("get", url)
+        return data["symbols"]
 
     async def async_get_data(self) -> dict:
         """Get data from the API."""
-        url = "https://jsonplaceholder.typicode.com/posts/1"
+        url = f"{self._url}latest?base={self._currency}"
         return await self.api_wrapper("get", url)
 
-    async def async_set_title(self, value: str) -> None:
-        """Get data from the API."""
-        url = "https://jsonplaceholder.typicode.com/posts/1"
-        await self.api_wrapper("patch", url, data={"title": value}, headers=HEADERS)
-
     async def api_wrapper(
-        self, method: str, url: str, data: dict = {}, headers: dict = {}
+        self, method: str, url: str, data: dict = None, headers: dict = None
     ) -> dict:
         """Get information from the API."""
         try:
@@ -42,15 +51,6 @@ class IntegrationBlueprintApiClient:
                 if method == "get":
                     response = await self._session.get(url, headers=headers)
                     return await response.json()
-
-                elif method == "put":
-                    await self._session.put(url, headers=headers, json=data)
-
-                elif method == "patch":
-                    await self._session.patch(url, headers=headers, json=data)
-
-                elif method == "post":
-                    await self._session.post(url, headers=headers, json=data)
 
         except asyncio.TimeoutError as exception:
             _LOGGER.error(

@@ -1,1 +1,4 @@
-pytest-homeassistant-custom-component==0.4.0
+-r requirements_dev.txt
+pytest-homeassistant-custom-component
+pytest
+pytest-cov

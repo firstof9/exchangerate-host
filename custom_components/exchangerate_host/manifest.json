@@ -1,0 +1,12 @@
+{
+  "domain": "exchangerate_host",
+  "name": "ExchangeRate.host",
+  "documentation": "https://github.com/firstof9/exchangerate-host",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/firstof9/exchangerate-host/issues",
+  "version": "0.0.0",
+  "config_flow": true,
+  "codeowners": [
+    "@firstof9"
+  ]
+}

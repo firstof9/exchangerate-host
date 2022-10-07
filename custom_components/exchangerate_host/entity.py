@@ -1,13 +1,26 @@
 """BlueprintEntity class"""
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN, NAME, VERSION, ATTRIBUTION
+from .const import (
+    ATTRIBUTION,
+    CONF_CONVERT,
+    CONF_CURRENCY,
+    CONF_NAME,
+    DOMAIN,
+    NAME,
+    VERSION,
+)
 
 
-class IntegrationBlueprintEntity(CoordinatorEntity):
+class ExchangeRateHostEntity(CoordinatorEntity):
+    """ExchangeRateHost entity class."""
+
     def __init__(self, coordinator, config_entry):
         super().__init__(coordinator)
         self.config_entry = config_entry
+        self.currency = config_entry.data.get(CONF_CURRENCY)
+        self._name = config_entry.data.get(CONF_NAME)
+        self.convert = config_entry.data.get(CONF_CONVERT)
 
     @property
     def unique_id(self):
@@ -28,6 +41,6 @@ class IntegrationBlueprintEntity(CoordinatorEntity):
         """Return the state attributes."""
         return {
             "attribution": ATTRIBUTION,
-            "id": str(self.coordinator.data.get("id")),
             "integration": DOMAIN,
+            "conversion": f"{self.currency} -> {self.convert}",
         }
